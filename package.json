@@ -1,0 +1,19 @@
+{
+  "name": "shoppy-api",
+  "version": "1.0.0",
+  "description": "A simple wrapper for the shoppy API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shoppy",
+    "api",
+    "wrapper"
+  ],
+  "author": "KibbeWater",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
