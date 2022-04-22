@@ -14,6 +14,8 @@
   "author": "KibbeWater",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "express": "^4.17.3",
+    "node-fetch": "^2.6.7",
+    "public-ip": "^5.0.0"
   }
 }
