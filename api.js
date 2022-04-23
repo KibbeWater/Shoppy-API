@@ -1,5 +1,28 @@
 const http = require('./http');
 
+/**
+ * Internal function used for parsing the HTTP response headers into page information
+ * @param {Object} res The HTTP response object
+ * @returns {Promise<PagesResult>}
+ */
+function _getPageInformation(res) {
+	return new Promise((resolve, reject) => {
+		if (!res.ok) reject(new Error('The http result was not OK'));
+
+		let totalPages = res.headers.get('X-Total-Pages');
+		let page = res.headers.get('X-Current-Page');
+		let itemsPerPage = res.headers.get('X-Items-Per-Page');
+
+		if (!totalPages || !page || !itemsPerPage) reject(new Error('Missing headers'));
+
+		resolve({
+			totalPages: Number(totalPages),
+			page: Number(page),
+			itemsPerPage: Number(itemsPerPage),
+		});
+	});
+}
+
 class Orders {
 	/**
 	 * Initialize a new Shoppy API Order Object
@@ -31,6 +54,22 @@ class Orders {
 		let apiObj = this.api;
 		return new Promise((resolve, reject) => {
 			apiObj.get(`/api/v1/orders/${ID}`).then(resolve).catch(reject);
+		});
+	}
+
+	/**
+	 * Gets the pages information of orders
+	 * @returns {Promise<PagesResult>}
+	 */
+	pages() {
+		let apiObj = this.api;
+		return new Promise((resolve, reject) => {
+			apiObj
+				.raw(`/api/v1/orders/`)
+				.then((res) => {
+					_getPageInformation(res).then(resolve).catch(reject);
+				})
+				.catch(reject);
 		});
 	}
 }
@@ -105,6 +144,22 @@ class Products {
 			apiObj.delete(`/api/v1/products/${ID}`).then(resolve).catch(reject);
 		});
 	}
+
+	/**
+	 * Gets the pages information of orders
+	 * @returns {Promise<PagesResult>}
+	 */
+	pages() {
+		let apiObj = this.api;
+		return new Promise((resolve, reject) => {
+			apiObj
+				.raw(`/api/v1/products/`)
+				.then((res) => {
+					_getPageInformation(res).then(resolve).catch(reject);
+				})
+				.catch(reject);
+		});
+	}
 }
 
 class Feedback {
@@ -138,6 +193,22 @@ class Feedback {
 		let apiObj = this.api;
 		return new Promise((resolve, reject) => {
 			apiObj.get(`/api/v1/feedbacks/${ID}`).then(resolve).catch(reject);
+		});
+	}
+
+	/**
+	 * Gets the pages information of orders
+	 * @returns {Promise<PagesResult>}
+	 */
+	pages() {
+		let apiObj = this.api;
+		return new Promise((resolve, reject) => {
+			apiObj
+				.raw(`/api/v1/feedbacks/`)
+				.then((res) => {
+					_getPageInformation(res).then(resolve).catch(reject);
+				})
+				.catch(reject);
 		});
 	}
 }
@@ -201,6 +272,22 @@ class Queries {
 			apiObj
 				.post(`/api/v1/queries/${ID}/reply`, { message: message })
 				.then(resolve)
+				.catch(reject);
+		});
+	}
+
+	/**
+	 * Gets the pages information of orders
+	 * @returns {Promise<PagesResult>}
+	 */
+	pages() {
+		let apiObj = this.api;
+		return new Promise((resolve, reject) => {
+			apiObj
+				.raw(`/api/v1/queries/`)
+				.then((res) => {
+					_getPageInformation(res).then(resolve).catch(reject);
+				})
 				.catch(reject);
 		});
 	}

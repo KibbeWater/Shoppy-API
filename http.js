@@ -105,4 +105,26 @@ module.exports = class http {
 			}
 		});
 	}
+
+	/**
+	 * Get the raw HTTP response
+	 * @param {string} endpoint The API endpoint to send the request to
+	 * @param {?*} options Custom HTTP options
+	 * @returns {Promise<Object>}
+	 */
+	raw(endpoint, options) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				resolve(
+					await fetch(`${shoppyURL}${endpoint}`, {
+						headers: {
+							Authorization: this.apiKey,
+						},
+					})
+				);
+			} catch (e) {
+				reject(e);
+			}
+		});
+	}
 };

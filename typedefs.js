@@ -100,6 +100,13 @@
  */
 
 /**
+ * @typedef PagesResult
+ * @property {number} totalPages
+ * @property {number} page
+ * @property {number} itemsPerPage
+ */
+
+/**
  * @typedef QueryObject
  * @property {string} id
  * @property {number} status
