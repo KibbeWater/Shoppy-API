@@ -6,6 +6,10 @@ A basic shoppy API wrapper
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+    - [Requiring](#requiring)
+    - [Orders](#orders)
+    - [Reviews](#reviews)
+    - [Webhook listening](#webhook-listening)
 
 <!-- TOC -->
 
