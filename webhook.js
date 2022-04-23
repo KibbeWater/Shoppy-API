@@ -16,18 +16,35 @@ class WebhookAPI {
 		this.port = port | 6367;
 
 		this.app = express();
-		this.app.use(express.json());
+		this.app.use((req, res, next) => {
+			req.rawBody = '';
+			req.on('data', (chunk) => {
+				req.rawBody += chunk;
+			});
+			req.on('end', () => {
+				try {
+					req.body = JSON.parse(req.rawBody);
+					next();
+				} catch (err) {
+					console.log('Error parsing body');
+					next();
+				}
+			});
+		});
 		this.app.all('/', (req, res) => {
-			if (!req.headers['X-Shoppy-Signature'])
+			if (!req.headers['x-shoppy-signature'])
 				return res.status(400).json({ error: 'Unauthorized request' });
 
-			let signature = crypto.createHmac('sha256', this.secret).update(req.body).digest('hex');
-			if (signature !== req.headers['X-Shoppy-Signature'])
+			let hmac = crypto.createHmac('sha512', this.secret);
+			let signed = hmac.update(Buffer.from(req.rawBody, 'utf-8')).digest('hex');
+
+			if (signed !== req.headers['x-shoppy-signature'])
 				return res.status(400).json({ error: 'Unauthorized request' });
 
 			this.#execute(req.body.event, req.body.data);
 			res.status(200).json({ success: true });
 		});
+		this.app.listen(this.port);
 	}
 
 	/**
