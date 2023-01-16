@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios';
 import ApiBase from './apibase';
 
 export class Products extends ApiBase {

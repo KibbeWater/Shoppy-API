@@ -1,5 +1,3 @@
-import { AxiosInstance } from 'axios';
-
 import ApiBase from './apibase';
 
 export class PayV2 extends ApiBase {
