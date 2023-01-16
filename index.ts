@@ -1,7 +1,6 @@
-import API from './api';
-import Webhook from './webhook';
+import { ShoppyAPI, WebhookAPI } from './api';
 
 export default {
-	API,
-	Webhook,
+	ShoppyAPI,
+	WebhookAPI,
 };
