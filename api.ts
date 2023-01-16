@@ -4,10 +4,11 @@ import { Orders } from './API/Orders';
 import { PayV2 } from './API/payv2';
 import { Products } from './API/products';
 import { Queries } from './API/queries';
+import { WebhookAPI } from './webhook';
 
 const SHOPPY_URL = 'https://shoppy.gg/api';
 
-export default class ShoppyAPI {
+export class ShoppyAPI {
 	api: AxiosInstance;
 
 	orders: Orders;
@@ -35,3 +36,5 @@ export default class ShoppyAPI {
 		this.pay = new PayV2(this.api);
 	}
 }
+
+export { WebhookAPI };

@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
 
-import ShoppyAPI from './api';
+import { ShoppyAPI } from './api';
 import ApiBase from './API/apibase';
 
 describe('Testing API and API Endpoints', () => {

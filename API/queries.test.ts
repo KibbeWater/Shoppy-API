@@ -1,6 +1,6 @@
-import { describe, expect, test, beforeEach } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 
-import ShoppyAPI from '../api';
+import { ShoppyAPI } from '../api';
 
 describe('Testing Queries API', () => {
 	test('Get all queries', async () => {
