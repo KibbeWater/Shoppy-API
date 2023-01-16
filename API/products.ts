@@ -1,3 +1,4 @@
+import { AxiosInstance } from 'axios';
 import ApiBase from './apibase';
 
 export class Products extends ApiBase {
@@ -7,7 +8,7 @@ export class Products extends ApiBase {
 	all(page: number = 1): Promise<Product[]> {
 		return new Promise((resolve, reject) =>
 			this.api
-				.get<Product[]>(`/products?page=${page || 1}`)
+				.get<Product[]>(`/v1/products?page=${page || 1}`)
 				.then((res) => resolve(res.data))
 				.catch(reject)
 		);
@@ -19,7 +20,7 @@ export class Products extends ApiBase {
 	get(id: string): Promise<Product> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.get<Product>(`/products/${id}`)
+				.get<Product>(`/v1/products/${id}`)
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -31,7 +32,7 @@ export class Products extends ApiBase {
 	create(options: CreateProductParams): Promise<Product> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.put<Product>(`/products/`, options)
+				.put<Product>(`/v1/products/`, options)
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -43,7 +44,7 @@ export class Products extends ApiBase {
 	update(id: string, options: UpdateProductParams) {
 		return new Promise((resolve, reject) => {
 			this.api
-				.post<Product>(`/products/${id}`, options)
+				.post<Product>(`/v1/products/${id}`, options)
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -55,7 +56,7 @@ export class Products extends ApiBase {
 	delete(id): Promise<void> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.delete(`/products/${id}`)
+				.delete(`/v1/products/${id}`)
 				.then(() => resolve())
 				.catch(reject);
 		});
@@ -65,6 +66,6 @@ export class Products extends ApiBase {
 	 * Gets the pages information of orders
 	 */
 	pages(): Promise<PagesResult> {
-		return new Promise((resolve, reject) => this._getPageInformation('/products').then(resolve).catch(reject));
+		return new Promise((resolve, reject) => this._getPageInformation('/v1/products').then(resolve).catch(reject));
 	}
 }

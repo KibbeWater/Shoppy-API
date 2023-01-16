@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Feedback } from './API/feedback';
+import { Feedbacks } from './API/feedbacks';
 import { Orders } from './API/Orders';
 import { PayV2 } from './API/payv2';
 import { Products } from './API/products';
@@ -12,11 +12,11 @@ export default class ShoppyAPI {
 
 	orders: Orders;
 	products: Products;
-	feedback: Feedback;
+	feedbacks: Feedbacks;
 	queries: Queries;
 	pay: PayV2;
 
-	constructor(apiKey: string | undefined) {
+	constructor(apiKey?: string) {
 		const API_KEY = apiKey || process.env.SHOPPY_API_KEY;
 
 		if (!API_KEY) throw new Error('No API key provided');
@@ -24,13 +24,13 @@ export default class ShoppyAPI {
 		this.api = axios.create({
 			baseURL: SHOPPY_URL,
 			headers: {
-				Authorization: apiKey,
+				Authorization: API_KEY,
 			},
 		});
 
 		this.orders = new Orders(this.api);
 		this.products = new Products(this.api);
-		this.feedback = new Feedback(this.api);
+		this.feedbacks = new Feedbacks(this.api);
 		this.queries = new Queries(this.api);
 		this.pay = new PayV2(this.api);
 	}

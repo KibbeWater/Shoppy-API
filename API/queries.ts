@@ -1,3 +1,4 @@
+import { AxiosInstance } from 'axios';
 import ApiBase from './apibase';
 
 export class Queries extends ApiBase {
@@ -7,7 +8,7 @@ export class Queries extends ApiBase {
 	all(page: number = 1): Promise<Query[]> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.get<Query[]>(`/queries?page=${page || 1}`)
+				.get<Query[]>(`/v1/queries?page=${page || 1}`)
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -19,7 +20,7 @@ export class Queries extends ApiBase {
 	get(id: string): Promise<Query> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.get<Query>(`/queries/${id}`)
+				.get<Query>(`/v1/queries/${id}`)
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -31,7 +32,7 @@ export class Queries extends ApiBase {
 	update(id: string, action: 'close' | 'reopen'): Promise<Query> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.post<Query>(`/queries/${id}/${action}`, {})
+				.post<Query>(`/v1/queries/${id}/${action}`, {})
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -43,7 +44,7 @@ export class Queries extends ApiBase {
 	reply(id: string, message: string): Promise<Query> {
 		return new Promise((resolve, reject) => {
 			this.api
-				.post<Query>(`/queries/${id}/reply`, { message: message })
+				.post<Query>(`/v1/queries/${id}/reply`, { message: message })
 				.then((res) => resolve(res.data))
 				.catch(reject);
 		});
@@ -53,6 +54,6 @@ export class Queries extends ApiBase {
 	 * Gets the pages information of orders
 	 */
 	pages(): Promise<PagesResult> {
-		return new Promise((resolve, reject) => this._getPageInformation('/queries').then(resolve).catch(reject));
+		return new Promise((resolve, reject) => this._getPageInformation('/v1/queries').then(resolve).catch(reject));
 	}
 }
