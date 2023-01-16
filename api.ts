@@ -1,6 +1,6 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { Feedbacks } from './API/feedbacks';
-import { Orders } from './API/Orders';
+import { Orders } from './API/orders';
 import { PayV2 } from './API/payv2';
 import { Products } from './API/products';
 import { Queries } from './API/queries';
