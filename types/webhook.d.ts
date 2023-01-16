@@ -1,5 +1,4 @@
 type WebhookConfig = {
-	port?: number;
 	secret?: string;
 	secure?: boolean;
 };

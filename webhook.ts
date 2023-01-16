@@ -9,7 +9,6 @@ export class WebhookAPI {
 
 	constructor(config: WebhookConfig = {}) {
 		const newConfig = {
-			port: config.port || 3000,
 			secret: config.secret || process.env.SHOPPY_WEBHOOK_SECRET,
 			secure: config.secure !== undefined ? config.secure : true,
 		};
@@ -61,4 +60,6 @@ export class WebhookAPI {
 	on(event: string, callback: (data: any) => void) {
 		this.callbacks.push({ event, callback });
 	}
+
+	listen = (port: number) => this.app.listen(port);
 }
