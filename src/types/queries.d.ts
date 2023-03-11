@@ -18,23 +18,23 @@
  */
 
 type Query = {
-	id: string;
-	status: number;
-	subject: string;
-	email: string;
-	message: string;
-	created_at: string;
-	updated_at: string;
-	replies: string[];
-	agent: {
-		geo: {
-			ip: string;
-			iso_code: string;
-			country: string;
-			city: string;
-			state: string;
-			state_name: string;
-			postal_code: string;
-		};
-	};
+    id: string;
+    status: number;
+    subject: string;
+    email: string;
+    message: string;
+    created_at: string;
+    updated_at: string;
+    replies: string[];
+    agent: {
+        geo: {
+            ip: string;
+            iso_code: string;
+            country: string;
+            city: string;
+            state: string;
+            state_name: string;
+            postal_code: string;
+        };
+    };
 };
