@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"outDir": "./lib",
+		"moduleResolution": "Node",
+		"esModuleInterop": true,
+		"typeRoots": ["./types"],
+		"target": "ES5",
+		"module": "CommonJS",
+		"declaration": true,
+		"strict": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "**/__tests__/*"]
+}

@@ -105,3 +105,6 @@ dist
 
 # Just some personal development stuff
 dummy.js
+
+/lib
+package-lock.json
